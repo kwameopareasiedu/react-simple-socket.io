@@ -19,6 +19,7 @@ interface SocketContextProps {
     eventHandler: SocketEventHandler
   ) => SocketEventSubscription;
   subscribeOnce: (eventName: string, eventHandler: SocketEventHandler) => void;
+  subscribeAny: (eventHandler: SocketEventHandler) => SocketEventSubscription;
   emit: (eventName: string, eventData?: any) => void;
 }
 
@@ -68,6 +69,16 @@ export const SocketProvider = ({
     socket.once(eventName, eventHandler);
   };
 
+  const subscribeAny = (eventHandler: SocketEventHandler) => {
+    socket.onAny(eventHandler);
+
+    return {
+      unsubscribe: () => {
+        socket.offAny(eventHandler);
+      }
+    } as SocketEventSubscription;
+  };
+
   const emit = (eventName: string, eventData?: any) => {
     socket.emit(eventName, eventData);
   };
@@ -99,6 +110,7 @@ export const SocketProvider = ({
         disconnect,
         subscribe,
         subscribeOnce,
+        subscribeAny,
         emit
       }}>
       {children}
