@@ -1,0 +1,14 @@
+.idea
+.vscode
+.sass-cache
+node_modules
+example
+*.iml
+*.tgz
+*.ini
+*.log
+.eslintrc.json
+.prettierrc.json
+rollup.config.js
+tsconfig.json
+yarn.lock
