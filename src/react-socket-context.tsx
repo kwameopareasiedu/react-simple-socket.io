@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useContext, useEffect, useMemo } from "react";
 import io from "socket.io-client";
 import { ManagerOptions } from "socket.io-client/build/esm/manager";
 import { SocketOptions } from "socket.io-client/build/esm/socket";
@@ -16,7 +16,7 @@ interface SocketContextProps {
   disconnect: () => void;
   subscribe: (
     eventName: string,
-    callback: SocketEventHandler
+    eventHandler: SocketEventHandler
   ) => SocketEventSubscription;
   emit: (eventName: string, eventData?: any) => void;
 }
@@ -25,16 +25,22 @@ const SocketContext = createContext<SocketContextProps>(null);
 
 interface SocketProviderProps {
   children: JSX.Element;
-  socketIoUri: string | Partial<ManagerOptions & SocketOptions>;
-  socketIoOptions?: Partial<ManagerOptions & SocketOptions>;
+  socketIoConfig: {
+    uri: string | Partial<ManagerOptions & SocketOptions>;
+    options?: Partial<ManagerOptions & SocketOptions>;
+  };
+  globalEventHandlers?: { [eventName: string]: SocketEventHandler };
 }
 
 export const SocketProvider = ({
   children,
-  socketIoUri,
-  socketIoOptions
+  socketIoConfig,
+  globalEventHandlers
 }: SocketProviderProps): JSX.Element => {
-  const socket = useMemo(() => io(socketIoUri, socketIoOptions), []);
+  const socket = useMemo(
+    () => io(socketIoConfig.uri, socketIoConfig.options),
+    []
+  );
 
   const connect = () => {
     if (!socket.connected) socket.connect();
@@ -44,12 +50,12 @@ export const SocketProvider = ({
     socket.disconnect();
   };
 
-  const subscribe = (eventName: string, callback: SocketEventHandler) => {
-    socket.on(eventName, callback);
+  const subscribe = (eventName: string, eventHandler: SocketEventHandler) => {
+    socket.on(eventName, eventHandler);
 
     return {
       unsubscribe: () => {
-        socket.off(eventName, callback);
+        socket.off(eventName, eventHandler);
       }
     } as SocketEventSubscription;
   };
@@ -57,6 +63,26 @@ export const SocketProvider = ({
   const emit = (eventName: string, eventData?: any) => {
     socket.emit(eventName, eventData);
   };
+
+  useEffect(() => {
+    const globalSubscriptions: Array<SocketEventSubscription> = [];
+
+    if (globalEventHandlers) {
+      const globalEventNames = Object.keys(globalEventHandlers);
+
+      for (const eventName of globalEventNames) {
+        const eventHandler = globalEventHandlers[eventName];
+        globalSubscriptions.push(subscribe(eventName, eventHandler));
+      }
+    }
+
+    return () => {
+      // Unsubscribe global socket events
+      for (const subscription of globalSubscriptions) {
+        subscription.unsubscribe();
+      }
+    };
+  }, []);
 
   return (
     <SocketContext.Provider
