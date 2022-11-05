@@ -1,6 +1,6 @@
-# React Simple Socket
+# React Simple Socket.IO
 
-![](https://img.shields.io/badge/version-1.0.0-blue) ![](https://img.shields.io/badge/react-v18.2.0-blue) [![](https://img.shields.io/badge/github-star-lightgrey)](https://github.com/kwameopareasiedu/react-simple-socket)
+![](https://img.shields.io/badge/version-1.0.0-blue) ![](https://img.shields.io/badge/react-v18.2.0-blue) [![](https://img.shields.io/badge/github-star-lightgrey)](https://github.com/kwameopareasiedu/react-simple-socket.io)
 
 **Easily use [Socket.IO](https://socket.io/) in your React app**.
 
@@ -16,15 +16,15 @@ Seriously, how is this different from using plain Socket.IO?
 
 ## Installation
 
-React Simple Socket marks React as a peer dependency. So you will need React
+React Simple Socket.IO marks React as a peer dependency. So you will need React
 installed in your app as well.
 
 ```bash
-yarn add react react-simple-socket
+yarn add react react-simple-socket.io
 ```
 
 ```bash
-npm install --save react react-simple-socket
+npm install --save react react-simple-socket.io
 ```
 
 ## Setup
@@ -34,7 +34,7 @@ In your `index.tsx`, wrap you app in the `SocketProvider` component
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { SocketProvider } from "react-simple-socket";
+import { SocketProvider } from "react-simple-socket.io";
 import App from "./app";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -78,7 +78,7 @@ import {
   ChatMessageList,
   ChatInput
 } from "ficticious-chat-library";
-import { useSocketContext } from "react-simple-socket";
+import { useSocketContext } from "react-simple-socket.io";
 /* Other imports */
 
 const ChatWidget = (): JSX.Element => {
@@ -137,7 +137,7 @@ export default ChatWidget;
 The `example/` folder contains:
 
 1. A simple Express server setup with Socket.IO
-2. An example client app demonstrating `react-simple-socket`;
+2. An example client app demonstrating `react-simple-socket.io`;
 
 To run the examples, first clone the project repository from GitHub:
 
