@@ -1,4 +1,4 @@
-import { Context, FC } from "react";
+import { FC } from "react";
 import { ManagerOptions } from "socket.io-client/build/esm/manager";
 import { SocketOptions } from "socket.io-client/build/esm/socket";
 
@@ -33,4 +33,4 @@ interface SocketProviderProps {
 
 export declare const SocketProvider: FC<SocketProviderProps>;
 
-export declare const useSocketContext: () => Context<SocketContextProps>;
+export declare const useSocketContext: () => SocketContextProps;

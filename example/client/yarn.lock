@@ -2084,10 +2084,10 @@ react-refresh@^0.14.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.0.tgz#4e02825378a5f227079554d4284889354e5f553e"
   integrity sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==
 
-react-simple-socket.io@^1.0.0-test.1:
-  version "1.0.0-test.1"
-  resolved "https://registry.yarnpkg.com/react-simple-socket.io/-/react-simple-socket.io-1.0.0-test.1.tgz#f5b9c9096753b55da86c4b53439f4b5f2ae16a14"
-  integrity sha512-IrTJef70eRvhsNp7eyQOpy85eGFbK/mbm2OiuvvyaHfwZVsS9mGmBmK0EegCtzXko5XN/2ETdkPkxGdCscg85w==
+react-simple-socket.io@^1.0.0-test.2:
+  version "1.0.0-test.2"
+  resolved "https://registry.yarnpkg.com/react-simple-socket.io/-/react-simple-socket.io-1.0.0-test.2.tgz#d66d3fb390cdc3e47d71ea130265f908dc409238"
+  integrity sha512-hPA25jpBCtTXFlRTcxrqKUv/n/tFelPtIjiPeldGBCHHk1vfH0jcy7Xz2Vw8HKi528uwoSKB6/+EOBk707YBIA==
   dependencies:
     react "^18.2.0"
     socket.io-client "^4.5.3"
