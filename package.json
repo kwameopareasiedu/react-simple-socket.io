@@ -1,6 +1,6 @@
 {
   "name": "react-socket.io-lib",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A React context for setting up and using Socket.IO in your app",
   "author": "Kwame Opare Asiedu",
   "main": "dist/index.js",
