@@ -3,11 +3,11 @@ import io from "socket.io-client";
 import { ManagerOptions } from "socket.io-client/build/esm/manager";
 import { SocketOptions } from "socket.io-client/build/esm/socket";
 
-export type SocketEventHandler = (eventData?: any) => void;
+type SocketEventHandler = (eventData?: any) => void;
 
 // The subscription object which contains
 // functions for managing a subscription
-export interface SocketEventSubscription {
+interface SocketEventSubscription {
   unsubscribe: () => void;
 }
 
@@ -18,6 +18,7 @@ interface SocketContextProps {
     eventName: string,
     eventHandler: SocketEventHandler
   ) => SocketEventSubscription;
+  subscribeOnce: (eventName: string, eventHandler: SocketEventHandler) => void;
   emit: (eventName: string, eventData?: any) => void;
 }
 
@@ -60,6 +61,13 @@ export const SocketProvider = ({
     } as SocketEventSubscription;
   };
 
+  const subscribeOnce = (
+    eventName: string,
+    eventHandler: SocketEventHandler
+  ) => {
+    socket.once(eventName, eventHandler);
+  };
+
   const emit = (eventName: string, eventData?: any) => {
     socket.emit(eventName, eventData);
   };
@@ -77,7 +85,7 @@ export const SocketProvider = ({
     }
 
     return () => {
-      // Unsubscribe global socket events
+      // Unsubscribe global socket events during unmount
       for (const subscription of globalSubscriptions) {
         subscription.unsubscribe();
       }
@@ -90,6 +98,7 @@ export const SocketProvider = ({
         connect,
         disconnect,
         subscribe,
+        subscribeOnce,
         emit
       }}>
       {children}
