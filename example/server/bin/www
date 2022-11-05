@@ -3,6 +3,7 @@
 const debug = require("debug")("server:server");
 const http = require("http");
 const IO = require("socket.io");
+const falso = require("@ngneat/falso");
 const port = normalizePort(process.env.PORT || "3000");
 const app = require("../app");
 
@@ -47,6 +48,15 @@ const io = new IO.Server(server, {
 });
 
 io.on("connection", socket => {
+  socket.on("message", data => {
+    socket.emit("response", {
+      text: falso.randParagraph(),
+      rnd: Math.random()
+    });
+
+    console.log("On socket message!");
+  });
+
   console.log("Socket connected!");
 });
 
