@@ -1,6 +1,6 @@
 {
   "name": "react-simple-socket.io",
-  "version": "1.0.0-test.3",
+  "version": "1.0.0",
   "description": "A React context for setting up and using Socket.IO in your app",
   "author": "Kwame Opare Asiedu",
   "type": "module",
