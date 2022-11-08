@@ -2,7 +2,7 @@ import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./app";
 import { MantineProvider } from "@mantine/core";
-import { SocketProvider } from "../../../src/react-socket-context";
+import { SocketProvider } from "../../../src";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>

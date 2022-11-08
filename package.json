@@ -1,8 +1,16 @@
 {
   "name": "react-simple-socket.io",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A React context for setting up and using Socket.IO in your app",
   "author": "Kwame Opare Asiedu",
+  "homepage": "https://github.com/kwameopareasiedu/react-simple-socket.io#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwameopareasiedu/react-simple-socket.io"
+  },
+  "bugs": {
+    "url": "https://github.com/kwameopareasiedu/react-simple-socket.io/issues"
+  },
   "type": "module",
   "main": "dist/index.js",
   "typings": "dist/types.d.ts",
@@ -15,7 +23,6 @@
     "@types/react": "^18.0.25",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
-    "chai": "^4.3.6",
     "eslint": "^8.25.0",
     "prettier": "2.7.1",
     "rollup": "^2.79.1",

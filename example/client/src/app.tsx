@@ -8,7 +8,7 @@ import {
   TextInput,
   Card
 } from "@mantine/core";
-import { useSocketContext } from "../../../src/react-socket-context";
+import { useSocketContext } from "../../../src";
 
 export default function App() {
   const [connected, setConnected] = useState(false);
